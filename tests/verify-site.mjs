@@ -33,6 +33,7 @@ if (introPosition < 0 || clientsPosition < 0 || introPosition > clientsPosition)
 if ((html.match(/mailto:stephawieland@gmail\.com/g) || []).length !== 2) throw new Error("Both email links must use Stephanie's address");
 if (html.includes("hello@stephaniewieland.com")) throw new Error("Placeholder email must be removed");
 if (!html.includes("Short-Form Video Editor")) throw new Error("Missing professional title");
+if (html.includes("Available for selected projects")) throw new Error("Availability line must be removed");
 
 const css = readFileSync(new URL("styles.css", root), "utf8");
 for (const requirement of ["--pink: #f08bd1", "prefers-reduced-motion", ":focus-visible", "@media (max-width: 760px)"]) {
@@ -45,6 +46,12 @@ for (const phoneRequirement of [
   ".email-link { font-size: 1.45rem; }"
 ]) {
   if (!css.includes(phoneRequirement)) throw new Error(`Missing narrow-phone protection: ${phoneRequirement}`);
+}
+for (const captionRequirement of [
+  ".project figcaption { display: grid; grid-template-columns: 1fr;",
+  ".project h3, .project h4 { min-width: 0; overflow-wrap: anywhere;"
+]) {
+  if (!css.includes(captionRequirement)) throw new Error(`Missing caption overlap protection: ${captionRequirement}`);
 }
 
 for (const asset of [
