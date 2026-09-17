@@ -21,6 +21,15 @@ for (const category of ["Client edits", "Paid ads", "Self-made video essays"]) {
   if (!html.includes(category)) throw new Error(`Missing work category: ${category}`);
 }
 if (!html.includes('src="assets/stephanie-wieland.jpg"')) throw new Error("Missing Stephanie portrait");
+for (const removedClass of ['class="site-header"', 'class="hero"', 'class="ticker"', 'class="section-heading"']) {
+  if (html.includes(removedClass)) throw new Error(`Old opening still present: ${removedClass}`);
+}
+if (!html.includes('class="intro-card"')) throw new Error("Missing compact personal introduction");
+const introPosition = html.indexOf('class="intro-card"');
+const clientsPosition = html.indexOf('id="clients-title"');
+if (introPosition < 0 || clientsPosition < 0 || introPosition > clientsPosition) {
+  throw new Error("Compact introduction must appear immediately before Client edits");
+}
 if (!html.includes("mailto:hello@stephaniewieland.com")) throw new Error("Missing temporary email link");
 if (!html.includes("Short-Form Video Editor")) throw new Error("Missing professional title");
 
