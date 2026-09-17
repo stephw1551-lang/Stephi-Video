@@ -162,6 +162,25 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .22em
   .contact-footer { flex-direction: column; }
 }
 
+@media (max-width: 360px) {
+  :root { --gutter: .85rem; }
+  .intro-card { gap: 1.6rem; padding-block: 1.5rem 2.75rem; }
+  .intro-card figure { max-width: 76vw; box-shadow: .55rem .55rem 0 var(--ink); }
+  .intro-copy h1 { font-size: clamp(2.8rem, 15vw, 3.4rem); overflow-wrap: anywhere; }
+  .intro-copy > p:not(.kicker) { margin-block: 1.35rem 1rem; }
+  .intro-copy a { max-width: 100%; overflow-wrap: anywhere; }
+  .chapter-heading h3 { font-size: clamp(2.35rem, 13vw, 3rem); overflow-wrap: anywhere; }
+  .chapter-heading > p:last-child { font-size: .95rem; }
+  .project-grid .project { padding-inline: .35rem; }
+  .project-meta { gap: .45rem; font-size: .62rem; letter-spacing: .045em; }
+  .project figcaption { gap: .65rem; }
+  .project h3, .project h4 { font-size: 1.45rem; }
+  .process-intro h2, .about h2 { font-size: clamp(2.65rem, 14vw, 3.4rem); overflow-wrap: anywhere; }
+  .process blockquote { font-size: clamp(2.35rem, 13vw, 3rem); }
+  .contact h2 { font-size: clamp(3rem, 16vw, 4rem); overflow-wrap: anywhere; }
+  .email-link { font-size: 1.45rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

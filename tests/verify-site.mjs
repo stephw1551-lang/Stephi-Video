@@ -38,6 +38,14 @@ const css = readFileSync(new URL("styles.css", root), "utf8");
 for (const requirement of ["--pink: #f08bd1", "prefers-reduced-motion", ":focus-visible", "@media (max-width: 760px)"]) {
   if (!css.includes(requirement)) throw new Error(`Missing CSS requirement: ${requirement}`);
 }
+for (const phoneRequirement of [
+  "@media (max-width: 360px)",
+  ".intro-copy h1 { font-size: clamp(2.8rem, 15vw, 3.4rem); overflow-wrap: anywhere; }",
+  ".chapter-heading h3 { font-size: clamp(2.35rem, 13vw, 3rem); overflow-wrap: anywhere; }",
+  ".email-link { font-size: 1.45rem; }"
+]) {
+  if (!css.includes(phoneRequirement)) throw new Error(`Missing narrow-phone protection: ${phoneRequirement}`);
+}
 
 for (const asset of [
   "tss-objkts.mp4",
