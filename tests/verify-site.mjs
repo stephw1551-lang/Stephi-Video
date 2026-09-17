@@ -30,7 +30,8 @@ const clientsPosition = html.indexOf('id="clients-title"');
 if (introPosition < 0 || clientsPosition < 0 || introPosition > clientsPosition) {
   throw new Error("Compact introduction must appear immediately before Client edits");
 }
-if (!html.includes("mailto:hello@stephaniewieland.com")) throw new Error("Missing temporary email link");
+if ((html.match(/mailto:stephawieland@gmail\.com/g) || []).length !== 2) throw new Error("Both email links must use Stephanie's address");
+if (html.includes("hello@stephaniewieland.com")) throw new Error("Placeholder email must be removed");
 if (!html.includes("Short-Form Video Editor")) throw new Error("Missing professional title");
 
 const css = readFileSync(new URL("styles.css", root), "utf8");
